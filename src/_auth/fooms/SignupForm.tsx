@@ -30,8 +30,12 @@ import { Link } from "react-router-dom"
 // Import API
 import { createUserAccount } from "@/lib/appwrite/api"
 
+// Import Use Toast
+import { useToast } from "@/components/ui/use-toast"
+
 const SignupForm = () => {
 
+  const { toast } = useToast()
   const isLoading = false
 
   // 1. Define your form.
@@ -50,7 +54,9 @@ const SignupForm = () => {
     // Create The User
     const newUser = await createUserAccount(values)
 
-    console.log(newUser);
+    if (!newUser) {
+      return toast({ title: 'Sign Up failed. Please try again.' })
+    }
 
   }
 
