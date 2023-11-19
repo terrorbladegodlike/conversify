@@ -27,6 +27,9 @@ import Loader from "@/components/shared/Loader"
 // Import Link from React-Router-DOM
 import { Link } from "react-router-dom"
 
+// Import API
+import { createUserAccount } from "@/lib/appwrite/api"
+
 const SignupForm = () => {
 
   const isLoading = false
@@ -45,7 +48,10 @@ const SignupForm = () => {
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof signupValidation>) {
     // Create The User
-    // const newUser = await createUserAccount(values)
+    const newUser = await createUserAccount(values)
+
+    console.log(newUser);
+
   }
 
   return (
@@ -53,7 +59,7 @@ const SignupForm = () => {
 
       <div className="sm:w-420 flex-center flex-col">
 
-        <div className="text-2xl uppercase font-bold">
+        <div className="text-3xl uppercase font-bold">
           Conversify
         </div>
 
